@@ -70,8 +70,8 @@ class Link_State_Node(Node):
                     updated = True
                 if last_update < 0:
                     older = True
-                #if something is older, then resend back to sender our updated stuff
-        if updated or older:
+                # if something is older, then resend back to sender our updated stuff
+        if updated:  # or older:
             self.send_to_neighbors(str(self))
 
 
