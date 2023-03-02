@@ -15,7 +15,7 @@ class Link_State_Node(Node):
 
     # Fill in this function
     def link_has_been_updated(self, neighbor, latency):
-        if latency == -1 and neighbor in self.neighbors:
+        if latency == -1:
             self.neighbors.remove(neighbor)
         else:
             self.neighbors.append(neighbor)
