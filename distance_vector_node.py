@@ -97,5 +97,6 @@ class Distance_Vector_Node(Node):
 
     # Return a neighbor, -1 if no path to destination
     def get_next_hop(self, destination):
+        self.recalculate_dv()
         return self.distance_vector[destination][1][1]
 
