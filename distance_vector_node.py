@@ -43,25 +43,25 @@ class Distance_Vector_Node(Node):
             path[neighbor] = [self.id, neighbor]
 
         # update our dv with neighbor dvs
-        for i in range(len(self.distance_vector.keys())):
-            for neighbor in self.neighbors:
-                if neighbor not in self.neighbor_dvs:
-                    continue
-                neighbor_dv = self.neighbor_dvs[neighbor][0]
+        # for i in range(len(self.distance_vector.keys())):
+        for neighbor in self.neighbors:
+            if neighbor not in self.neighbor_dvs:
+                continue
+            neighbor_dv = self.neighbor_dvs[neighbor][0]
 
-                for node in neighbor_dv.keys():
-                    alt = self.weights[neighbor] + neighbor_dv[node][0]
-                    c = copy.deepcopy(neighbor_dv[node][1])
-                    if self.id in c:  # skip if it loops
-                        continue
-                    curr_path = [self.id] + c
-                    if node not in dist:
-                        dist[node] = alt
-                        path[node] = curr_path
-                        continue
-                    if dist[node] > alt:
-                        dist[node] = alt
-                        path[node] = curr_path
+            for node in neighbor_dv.keys():
+                alt = self.weights[neighbor] + neighbor_dv[node][0]
+                c = copy.deepcopy(neighbor_dv[node][1])
+                if self.id in c:  # skip if it loops
+                    continue
+                curr_path = [self.id] + c
+                if node not in dist:
+                    dist[node] = alt
+                    path[node] = curr_path
+                    continue
+                if dist[node] > alt:
+                    dist[node] = alt
+                    path[node] = curr_path
 
         # construct new dv from dist and path
         local_dv = {}
